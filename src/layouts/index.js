@@ -1,12 +1,13 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import Helmet from 'react-helmet'
+import styled from 'styled-components'
 
-import Header from '../components/header'
-import './index.css'
+import './normalize.css'
+import './styles.css'
 
 const Layout = ({ children, data }) => (
-  <div>
+  <PageWrapper>
     <Helmet
       title={data.site.siteMetadata.title}
       meta={[
@@ -14,18 +15,8 @@ const Layout = ({ children, data }) => (
         { name: 'keywords', content: 'sample, something' },
       ]}
     />
-    <Header siteTitle={data.site.siteMetadata.title} />
-    <div
-      style={{
-        margin: '0 auto',
-        maxWidth: 960,
-        padding: '0px 1.0875rem 1.45rem',
-        paddingTop: 0,
-      }}
-    >
-      {children()}
-    </div>
-  </div>
+    {children()}
+  </PageWrapper>
 )
 
 Layout.propTypes = {
@@ -42,4 +33,9 @@ export const query = graphql`
       }
     }
   }
+`
+
+const PageWrapper = styled.div`
+  background-image: linear-gradient(0deg, #ff862c 2%, #f52506 100%);
+  min-height: 100vh;
 `
